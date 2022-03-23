@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buttonManager : MonoBehaviour
+public class ButtonManager : MonoBehaviour
 {
-    public partsManager partsManager;
+    public PartsManager PartsManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,21 +13,31 @@ public class buttonManager : MonoBehaviour
 
     public void WheelUpButton()
     {
-        partsManager.WheelsUp();
+        PartsManager.WheelsUp();
     }
 
     public void WheelDownButton()
     {
-        partsManager.WheelsDown();
+        PartsManager.WheelsDown();
     }
 
     public void SpoilersUpButton()
     {
-        partsManager.SpoilersUp();
+        PartsManager.SpoilersUp();
     }
 
     public void SpoliersDownButton()
     {
-        partsManager.SpoilrsDown();
+        PartsManager.SpoilrsDown();
+    }
+
+    public void MaterialUpButton()
+    {
+        PartsManager.MaterialUp();
+    }
+
+    public void MaterialDownButton()
+    {
+        PartsManager.MaterialDown();
     }
 }

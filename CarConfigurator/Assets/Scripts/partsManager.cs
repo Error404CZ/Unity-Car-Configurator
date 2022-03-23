@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class partsManager : MonoBehaviour
+public class PartsManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> wheels = new List<GameObject>();
     [SerializeField] private List<GameObject> spoilers = new List<GameObject>();
+    [SerializeField] private List<Material> materials = new List<Material>();
+
+    [SerializeField] private Renderer carBody;
     // Start is called before the first frame update
     private int wheelsType = 0;
     private int spoilersType = 0;
+    private int bodyMaterialType = 0;
     void Start()
     {
         foreach (var typ in wheels)
@@ -23,6 +27,8 @@ public class partsManager : MonoBehaviour
             typ.SetActive(false);
         }
         spoilers[spoilersType].SetActive(true);
+        
+        carBody.material = materials[bodyMaterialType];
         
     }
 
@@ -83,6 +89,24 @@ public class partsManager : MonoBehaviour
             
             spoilersType--;
             spoilers[spoilersType].SetActive(true);
+        }
+    }
+
+    public void MaterialUp()
+    {
+        if (bodyMaterialType < materials.Count - 1)
+        {
+            bodyMaterialType++;
+            carBody.material = materials[bodyMaterialType];
+        }
+    }
+
+    public void MaterialDown()
+    {
+        if (bodyMaterialType > 0)
+        {
+            bodyMaterialType--;
+            carBody.material = materials[bodyMaterialType];
         }
     }
 }
