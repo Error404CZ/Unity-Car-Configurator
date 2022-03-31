@@ -2080,8 +2080,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -275}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchoredPosition: {x: 50, y: -125}
+  m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &465375491
 MonoBehaviour:
@@ -2183,7 +2183,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22188
+  m_Name: pb_Mesh19090
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2539,8 +2539,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -350}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchoredPosition: {x: 210, y: -200}
+  m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &496854124
 MonoBehaviour:
@@ -3478,8 +3478,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -200}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchoredPosition: {x: 210, y: -125}
+  m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &736288749
 MonoBehaviour:
@@ -3986,8 +3986,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchoredPosition: {x: 210, y: -50}
+  m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &836909674
 MonoBehaviour:
@@ -8744,8 +8744,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -125}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchoredPosition: {x: 50, y: -50}
+  m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1742123408
 MonoBehaviour:
@@ -9190,8 +9190,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -425}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchoredPosition: {x: 50, y: -200}
+  m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1810378731
 MonoBehaviour:
