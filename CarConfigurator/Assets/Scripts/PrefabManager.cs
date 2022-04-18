@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class TestScript : MonoBehaviour
+public class PrefabManager : MonoBehaviour
 {
+    [SerializeField] GameObject prefabManager;
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log(Mathf.Pow(5,-1));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        prefabManager.SetActive(false);
     }
 }

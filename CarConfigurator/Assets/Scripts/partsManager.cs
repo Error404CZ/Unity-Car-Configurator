@@ -5,30 +5,27 @@ using UnityEngine;
 
 public class PartsManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> wheels = new List<GameObject>();
-    [SerializeField] private List<GameObject> spoilers = new List<GameObject>();
-    [SerializeField] private List<Material> materials = new List<Material>();
+    public List<GameObject> wheels = new List<GameObject>();
+    public List<GameObject> spoilers = new List<GameObject>();
+    public List<Material> materials = new List<Material>();
 
     [SerializeField] private Renderer carBody;
     // Start is called before the first frame update
-    private int wheelsType = 0;
-    private int spoilersType = 0;
-    private int bodyMaterialType = 0;
     void Start()
     {
         foreach (var typ in wheels)
         {
             typ.SetActive(false);
         }
-        wheels[wheelsType].SetActive(true);
+        wheels[0].SetActive(true);
         
         foreach (var typ in spoilers)
         {
             typ.SetActive(false);
         }
-        spoilers[spoilersType].SetActive(true);
+        spoilers[0].SetActive(true);
         
-        carBody.material = materials[bodyMaterialType];
+        carBody.material = materials[0];
         
     }
 
@@ -38,75 +35,27 @@ public class PartsManager : MonoBehaviour
         
     }
 
-    public void WheelsUp()
+    public void WheelsChange(GameObject type)
     {
-        if (wheelsType < wheels.Count -1)
+        foreach (var typ in wheels)
         {
-            foreach (var typ in wheels)
-            {
-                typ.SetActive(false);
-            }
-            
-            wheelsType++;
-            wheels[wheelsType].SetActive(true);
+            typ.SetActive(false);
         }
+        type.SetActive(true);
     }
 
-    public void WheelsDown()
+    public void SpoilersChange(GameObject type)
     {
-        if (wheelsType > 0)
+        foreach (var typ in spoilers)
         {
-            foreach (var typ in wheels)
-            {
-                typ.SetActive(false);
-            }
-            
-            wheelsType--;
-            wheels[wheelsType].SetActive(true);
+            typ.SetActive(false);
         }
-    }
-    public void SpoilersUp()
-    {
-        if (spoilersType < spoilers.Count -1)
-        {
-            foreach (var typ in spoilers)
-            {
-                typ.SetActive(false);
-            }
-            
-            spoilersType++;
-            spoilers[spoilersType].SetActive(true);
-        }
-    }
-    public void SpoilrsDown()
-    {
-        if (spoilersType > 0)
-        {
-            foreach (var typ in spoilers)
-            {
-                typ.SetActive(false);
-            }
-            
-            spoilersType--;
-            spoilers[spoilersType].SetActive(true);
-        }
+        type.SetActive(true);
     }
 
-    public void MaterialUp()
+    public void BodyCollorChange(Material type)
     {
-        if (bodyMaterialType < materials.Count - 1)
-        {
-            bodyMaterialType++;
-            carBody.material = materials[bodyMaterialType];
-        }
+        carBody.material = type;
     }
-
-    public void MaterialDown()
-    {
-        if (bodyMaterialType > 0)
-        {
-            bodyMaterialType--;
-            carBody.material = materials[bodyMaterialType];
-        }
-    }
+    
 }
