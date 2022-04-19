@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,8 @@ public class ButtonManager : MonoBehaviour
     
 
     private Vector3 defaultButtonTransform;
+
+    [SerializeField] private GameObject backButton;
     
     
     // Start is called before the first frame update
@@ -25,6 +28,9 @@ public class ButtonManager : MonoBehaviour
         {
             typ.SetActive(true);
         }
+        
+        
+        backButton.SetActive(false);
     }
 
 
@@ -50,9 +56,13 @@ public class ButtonManager : MonoBehaviour
             {
                 partsManager.WheelsChange(w);
             });
+
+            button.GetComponentInChildren<TextMeshProUGUI>().text = w.name;
             
             defaultButtonTransform.y -= 75;
         }
+        
+        backButton.SetActive(true);
     }
 
     public void Spoilers()
@@ -78,8 +88,13 @@ public class ButtonManager : MonoBehaviour
                 partsManager.SpoilersChange(s);
             });
             
+            button.GetComponentInChildren<TextMeshProUGUI>().text = s.name;
+            
             defaultButtonTransform.y -= 75;
+            
         }
+        
+        backButton.SetActive(true);
     }
 
     public void BodyColor()
@@ -105,12 +120,27 @@ public class ButtonManager : MonoBehaviour
                 partsManager.BodyCollorChange(m);
             });
             
+            button.GetComponentInChildren<TextMeshProUGUI>().text = m.name;
+            
             defaultButtonTransform.y -= 75;
+            
         }
+        
+        backButton.SetActive(true);
     }
-
+    
     public void Back()
     {
+        foreach (var variaButton in buttons)
+        {
+            Destroy(variaButton);
+        }
+
+        foreach (var variaDefaultButton in defaultButtons)
+        {
+            variaDefaultButton.SetActive(true);
+        }
         
+        backButton.SetActive(false);
     }
 }
