@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -10,31 +11,63 @@ public class PartsManager : MonoBehaviour
     public List<Material> materials = new List<Material>();
 
     [SerializeField] private Renderer carBody;
+
+    public SaveData saveData;
+    public DataManager dataManager;
+    
     // Start is called before the first frame update
     void Start()
     {
-        foreach (var typ in wheels)
+        dataManager.LoadData();
+
+        try
         {
-            typ.SetActive(false);
+            foreach (var typ in wheels)
+            {
+                typ.SetActive(false);
+            }
+            saveData.saveWheels.SetActive(true);
         }
-        wheels[0].SetActive(true);
-        
-        foreach (var typ in spoilers)
+        catch
         {
-            typ.SetActive(false);
+            foreach (var typ in wheels)
+            {
+                typ.SetActive(false);
+            }
+            wheels[0].SetActive(true);
         }
-        spoilers[0].SetActive(true);
-        
-        carBody.material = materials[0];
+
+        try
+        {
+            foreach (var typ in spoilers)
+            {
+                typ.SetActive(false);
+            }
+            saveData.saveSpoilers.SetActive(true);
+
+          
+        }
+        catch
+        {
+            foreach (var typ in spoilers)
+            {
+                typ.SetActive(false);
+            }
+            spoilers[0].SetActive(true);
+        }
+
+        try
+        {
+            carBody.material = saveData.saveBodyMaterial;
+        }
+        catch
+        {
+            carBody.material = materials[0];
+        }
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
+    
     public void WheelsChange(GameObject type)
     {
         foreach (var typ in wheels)
@@ -42,6 +75,9 @@ public class PartsManager : MonoBehaviour
             typ.SetActive(false);
         }
         type.SetActive(true);
+
+        saveData.saveWheels = type;
+        dataManager.SaveData();
     }
 
     public void SpoilersChange(GameObject type)
@@ -51,11 +87,17 @@ public class PartsManager : MonoBehaviour
             typ.SetActive(false);
         }
         type.SetActive(true);
+
+        saveData.saveSpoilers = type;
+        dataManager.SaveData();
     }
 
     public void BodyCollorChange(Material type)
     {
         carBody.material = type;
+
+        saveData.saveBodyMaterial = type;
+        dataManager.SaveData();
     }
     
 }
