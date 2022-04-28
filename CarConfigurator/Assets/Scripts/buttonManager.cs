@@ -13,39 +13,50 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private GameObject prefabButton;
 
     public PartsManager partsManager;
-    public GameObject partsManagerGameObject;
-    
+    public CameraManager cameraManager;
 
     private Vector3 defaultButtonTransform;
 
     [SerializeField] private GameObject backButton;
+
     
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
-        foreach (var typ in defaultButtons)
+        foreach (var type in defaultButtons)
         {
-            typ.SetActive(true);
+            type.SetActive(true);
         }
         
         
         backButton.SetActive(false);
+        
+        
     }
 
-
-    public void Wheels()
+    private void VectorConfig()
     {
         defaultButtonTransform.x = -940;
         defaultButtonTransform.y = 490;
         defaultButtonTransform.z = 0;
+    }
+
+    
+
+    public void Wheels()
+    {
+        VectorConfig();
         
-        foreach (var typ in defaultButtons)
+        cameraManager.CameraPoints(0);
+
+        foreach (var type in defaultButtons)
         {
-            typ.SetActive(false);
+            type.SetActive(false);
         }
 
-        foreach (var w in partsManager.wheels)
+        foreach (var wheel in partsManager.wheels)
         {
             GameObject button = Instantiate(prefabButton) as GameObject;
             
@@ -54,10 +65,10 @@ public class ButtonManager : MonoBehaviour
             
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                partsManager.WheelsChange(w);
+                partsManager.WheelsChange(wheel);
             });
 
-            button.GetComponentInChildren<TextMeshProUGUI>().text = w.name;
+            button.GetComponentInChildren<TextMeshProUGUI>().text = wheel.name;
             
             defaultButtonTransform.y -= 75;
         }
@@ -67,16 +78,16 @@ public class ButtonManager : MonoBehaviour
 
     public void Spoilers()
     {
-        defaultButtonTransform.x = -940;
-        defaultButtonTransform.y = 490;
-        defaultButtonTransform.z = 0;
+        VectorConfig();
         
-        foreach (var typ in defaultButtons)
+        cameraManager.CameraPoints(1);
+        
+        foreach (var type in defaultButtons)
         {
-            typ.SetActive(false);
+            type.SetActive(false);
         }
 
-        foreach (var s in partsManager.spoilers)
+        foreach (var spoiler in partsManager.spoilers)
         {
             GameObject button = Instantiate(prefabButton) as GameObject;
             
@@ -85,10 +96,10 @@ public class ButtonManager : MonoBehaviour
             
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                partsManager.SpoilersChange(s);
+                partsManager.SpoilersChange(spoiler);
             });
             
-            button.GetComponentInChildren<TextMeshProUGUI>().text = s.name;
+            button.GetComponentInChildren<TextMeshProUGUI>().text = spoiler.name;
             
             defaultButtonTransform.y -= 75;
             
@@ -99,16 +110,16 @@ public class ButtonManager : MonoBehaviour
 
     public void BodyColor()
     {
-        defaultButtonTransform.x = -940;
-        defaultButtonTransform.y = 490;
-        defaultButtonTransform.z = 0;
+        VectorConfig();
         
-        foreach (var typ in defaultButtons)
+        cameraManager.CameraPoints(2);
+        
+        foreach (var type in defaultButtons)
         {
-            typ.SetActive(false);
+            type.SetActive(false);
         }
 
-        foreach (var m in partsManager.materials)
+        foreach (var material in partsManager.materials)
         {
             GameObject button = Instantiate(prefabButton) as GameObject;
             
@@ -117,10 +128,10 @@ public class ButtonManager : MonoBehaviour
             
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                partsManager.BodyCollorChange(m);
+                partsManager.BodyCollorChange(material);
             });
             
-            button.GetComponentInChildren<TextMeshProUGUI>().text = m.name;
+            button.GetComponentInChildren<TextMeshProUGUI>().text = material.name;
             
             defaultButtonTransform.y -= 75;
             
@@ -142,5 +153,7 @@ public class ButtonManager : MonoBehaviour
         }
         
         backButton.SetActive(false);
+        
+        cameraManager.BackCamera();
     }
 }
