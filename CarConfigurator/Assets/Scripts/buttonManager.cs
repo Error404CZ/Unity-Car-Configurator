@@ -11,11 +11,14 @@ public class ButtonManager : MonoBehaviour
     [HideInInspector] public List<GameObject> buttons = new List<GameObject>();
 
     [SerializeField] private GameObject prefabButton;
-
+    [SerializeField] private GameObject HornButton;
+    
     public PartsManager partsManager;
     public CameraManager cameraManager;
 
     private Vector3 defaultButtonTransform;
+    
+    [SerializeField] private AudioSource audioSourceHorn;
 
     [SerializeField] private GameObject backButton;
 
@@ -33,6 +36,7 @@ public class ButtonManager : MonoBehaviour
         
         backButton.SetActive(false);
         
+        HornButton.SetActive(false);
         
     }
 
@@ -69,6 +73,7 @@ public class ButtonManager : MonoBehaviour
             });
 
             button.GetComponentInChildren<TextMeshProUGUI>().text = wheel.name;
+            
             
             defaultButtonTransform.y -= 75;
         }
@@ -140,6 +145,38 @@ public class ButtonManager : MonoBehaviour
         backButton.SetActive(true);
     }
     
+    public void Horn()
+    {
+        VectorConfig();
+        
+        HornButton.SetActive(true);
+        
+        foreach (var type in defaultButtons)
+        {
+            type.SetActive(false);
+        }
+
+        foreach (var horn in partsManager.horn)
+        {
+            GameObject button = Instantiate(prefabButton) as GameObject;
+            
+            button.transform.parent = GameObject.Find("NextButtons").transform;
+            button.transform.localPosition = defaultButtonTransform;
+            
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                partsManager.HornChange(horn);
+            });
+
+            button.GetComponentInChildren<TextMeshProUGUI>().text = horn.name;
+            
+            
+            defaultButtonTransform.y -= 75;
+        }
+        
+        backButton.SetActive(true);
+    }
+    
     public void Back()
     {
         foreach (var variaButton in buttons)
@@ -154,6 +191,13 @@ public class ButtonManager : MonoBehaviour
         
         backButton.SetActive(false);
         
+        HornButton.SetActive(false);
+        
         cameraManager.BackCamera();
+    }
+
+    public void PlayHorn()
+    {
+        audioSourceHorn.Play();
     }
 }

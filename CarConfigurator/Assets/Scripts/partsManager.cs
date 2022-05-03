@@ -9,9 +9,12 @@ public class PartsManager : MonoBehaviour
     public List<GameObject> wheels = new List<GameObject>();
     public List<GameObject> spoilers = new List<GameObject>();
     public List<Material> materials = new List<Material>();
+    public List<AudioClip> horn = new List<AudioClip>();
 
     [SerializeField] private Renderer carBody;
 
+    [SerializeField] private AudioSource audioSourceHorn;
+    
     public SaveData saveData;
     public DataManager dataManager;
     
@@ -65,6 +68,15 @@ public class PartsManager : MonoBehaviour
             carBody.material = materials[0];
         }
         
+        try
+        {
+            audioSourceHorn.clip = saveData.saveHorn;
+        }
+        catch
+        {
+            audioSourceHorn.clip = horn[0];
+        }
+        
     }
     
     
@@ -97,6 +109,16 @@ public class PartsManager : MonoBehaviour
         carBody.material = type;
 
         saveData.saveBodyMaterial = type;
+        dataManager.SaveData();
+    }
+
+    public void HornChange(AudioClip type)
+    {
+        audioSourceHorn.clip = type;
+        
+        audioSourceHorn.Play();
+        
+        saveData.saveHorn = type;
         dataManager.SaveData();
     }
     

@@ -7,4 +7,5 @@ public class SaveData : MonoBehaviour
     [HideInInspector] public GameObject saveWheels;
     [HideInInspector] public GameObject saveSpoilers;
     [HideInInspector] public Material saveBodyMaterial;
+    [HideInInspector] public AudioClip saveHorn;
 }

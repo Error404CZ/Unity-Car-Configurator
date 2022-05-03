@@ -6,7 +6,7 @@ using System.IO;
 public class DataManager : MonoBehaviour
 {
     public SaveData saveDataS;
-    private string fileData = "saveData.txt";
+    private string fileData = "saveData.json";
     
     public void SaveData()
     {
