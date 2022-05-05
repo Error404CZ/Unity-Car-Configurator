@@ -16,7 +16,7 @@ public class ButtonManager : MonoBehaviour
     public PartsManager partsManager;
     public CameraManager cameraManager;
 
-    private Vector3 defaultButtonTransform;
+    private Vector3 buttonScale;
     
     [SerializeField] private AudioSource audioSourceHorn;
 
@@ -37,22 +37,18 @@ public class ButtonManager : MonoBehaviour
         backButton.SetActive(false);
         
         HornButton.SetActive(false);
-        
-    }
 
-    private void VectorConfig()
-    {
-        defaultButtonTransform.x = -940;
-        defaultButtonTransform.y = 490;
-        defaultButtonTransform.z = 0;
-    }
 
+        buttonScale.x = 1;
+        buttonScale.y = 1;
+        buttonScale.x = 1;
+    }
+    
     
 
     public void Wheels()
     {
-        VectorConfig();
-        
+
         cameraManager.CameraPoints(0);
 
         foreach (var type in defaultButtons)
@@ -65,8 +61,7 @@ public class ButtonManager : MonoBehaviour
             GameObject button = Instantiate(prefabButton) as GameObject;
             
             button.transform.parent = GameObject.Find("NextButtons").transform;
-            button.transform.localPosition = defaultButtonTransform;
-            
+            button.transform.localScale = buttonScale;
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
                 partsManager.WheelsChange(wheel);
@@ -75,7 +70,6 @@ public class ButtonManager : MonoBehaviour
             button.GetComponentInChildren<TextMeshProUGUI>().text = wheel.name;
             
             
-            defaultButtonTransform.y -= 75;
         }
         
         backButton.SetActive(true);
@@ -83,7 +77,6 @@ public class ButtonManager : MonoBehaviour
 
     public void Spoilers()
     {
-        VectorConfig();
         
         cameraManager.CameraPoints(1);
         
@@ -95,10 +88,9 @@ public class ButtonManager : MonoBehaviour
         foreach (var spoiler in partsManager.spoilers)
         {
             GameObject button = Instantiate(prefabButton) as GameObject;
-            
+
             button.transform.parent = GameObject.Find("NextButtons").transform;
-            button.transform.localPosition = defaultButtonTransform;
-            
+            button.transform.localScale = buttonScale;
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
                 partsManager.SpoilersChange(spoiler);
@@ -106,7 +98,6 @@ public class ButtonManager : MonoBehaviour
             
             button.GetComponentInChildren<TextMeshProUGUI>().text = spoiler.name;
             
-            defaultButtonTransform.y -= 75;
             
         }
         
@@ -115,8 +106,7 @@ public class ButtonManager : MonoBehaviour
 
     public void BodyColor()
     {
-        VectorConfig();
-        
+
         cameraManager.CameraPoints(2);
         
         foreach (var type in defaultButtons)
@@ -129,8 +119,7 @@ public class ButtonManager : MonoBehaviour
             GameObject button = Instantiate(prefabButton) as GameObject;
             
             button.transform.parent = GameObject.Find("NextButtons").transform;
-            button.transform.localPosition = defaultButtonTransform;
-            
+            button.transform.localScale = buttonScale;
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
                 partsManager.BodyCollorChange(material);
@@ -138,7 +127,6 @@ public class ButtonManager : MonoBehaviour
             
             button.GetComponentInChildren<TextMeshProUGUI>().text = material.name;
             
-            defaultButtonTransform.y -= 75;
             
         }
         
@@ -147,8 +135,7 @@ public class ButtonManager : MonoBehaviour
     
     public void Horn()
     {
-        VectorConfig();
-        
+
         HornButton.SetActive(true);
         
         foreach (var type in defaultButtons)
@@ -161,7 +148,7 @@ public class ButtonManager : MonoBehaviour
             GameObject button = Instantiate(prefabButton) as GameObject;
             
             button.transform.parent = GameObject.Find("NextButtons").transform;
-            button.transform.localPosition = defaultButtonTransform;
+            button.transform.localScale = buttonScale;
             
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -171,7 +158,6 @@ public class ButtonManager : MonoBehaviour
             button.GetComponentInChildren<TextMeshProUGUI>().text = horn.name;
             
             
-            defaultButtonTransform.y -= 75;
         }
         
         backButton.SetActive(true);
